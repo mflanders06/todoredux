@@ -1,5 +1,6 @@
 require('dotenv').config();
-const express = require('express');
+const express = require('express'),
+    userCtrl = require('./controllers/user');
 const session = require('express-session');
 const massive = require('massive');
 
@@ -25,5 +26,8 @@ massive({
     app.set('db', dbInstance);
     console.log('Database Connected!')
 })
+
+app.post('/api/auth/login', userCtrl.login);
+app.post('/api/auth/register', userCtrl.register);
 
 app.listen(SERVER_PORT, () => console.log(`running on ${SERVER_PORT}`))
