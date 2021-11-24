@@ -35,8 +35,6 @@ module.exports = {
                     console.log(err);
                 })
         }
-
-
     },
 
     login: async (req, res) => {
