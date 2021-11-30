@@ -16,6 +16,16 @@ function Login() {
     function onChangeRegPass2(val)       { setRegPassword2( prevPass => val ) }
 
     function onClickLogin(){
+        let email = loginEmail;
+        let password = loginPassword;
+
+        axios
+            .post('/api/auth/login', {email, password})
+            .then( (res) => {
+                console.log(res)
+            } )
+            .catch( e => { console.log(e)})
+            
         console.log(loginEmail);
         console.log(loginPassword);
     }
