@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 function Login() {
 
@@ -25,12 +26,29 @@ function Login() {
                 console.log(res)
             } )
             .catch( e => { console.log(e)})
-            
+
         console.log(loginEmail);
         console.log(loginPassword);
     }
 
     function onClickReg(){
+
+        let email = regEmail;
+        let pass1 = regPassword1;
+        let pass2 = regPassword2;
+
+        if(!(pass1 === pass2)){
+            return alert('Passwords do not match')
+        }
+
+        axios
+            .post('/api/auth/register', {email, pass1})
+            .then( res => {
+                console.log(res)
+            })
+            .catch( e => console.log(e) )
+
+
         console.log(regEmail);
         console.log(regPassword1);
         console.log(regPassword2);
