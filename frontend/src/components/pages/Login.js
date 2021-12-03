@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import * as actions from '../../components/store/Actions';
+import store from '../../components/store/Store';
+import { connect } from 'react-redux';
 
-function Login() {
+function Login(props) {
 
     const [loginEmail, setLoginEmail]       = useState('');
     const [loginPassword, setLoginPassword] = useState('');
@@ -54,6 +57,16 @@ function Login() {
         console.log(regPassword2);
     }
 
+    const mapStateToProps = (state) => {
+        console.log('state', state);
+        return {
+            auth: store.auth
+        }
+    }
+
+    function setAuthTrue()      { props.authTrue(); return }
+    function setAdminTrue()     { props.adminTrue(); return }
+
     return(
         <>
             <div className="placeholder">
@@ -86,4 +99,13 @@ function Login() {
     )
 }
 
-export default Login;
+function mapStateToProps(state){
+    return state
+}
+
+let mapDispatchtoProps = {
+    authTrue: actions.authTrue,
+    authFalse: actions.authFalse
+}
+
+export default connect(mapStateToProps, mapDispatchtoProps) (Login);
