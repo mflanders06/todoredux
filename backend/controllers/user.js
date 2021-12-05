@@ -46,11 +46,11 @@ module.exports = {
             .find_user_by_email(email)
             .then((response) => {
                 if(!(response.length > 0)){
-                    return res.status(401).json('Email or password do not match our records');
+                    return res.status(200).json('Email or password do not match our records');
                 }
                 const areEqual = bcryptjs.compareSync(password, response[0].password);
                 if(!areEqual){
-                    return res.status(401).json('Username or password do not match our records');
+                    return res.status(200).json('Username or password do not match our records');
                 }
                 delete response[0].password
                 req.session.user = response[0];

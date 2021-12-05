@@ -26,7 +26,8 @@ function Login(props) {
         axios
             .post('/api/auth/login', {email, password})
             .then( (res) => {
-                console.log(res)
+                console.log(res);
+                setAuthTrue();
             } )
             .catch( e => { console.log(e)})
 
@@ -55,17 +56,15 @@ function Login(props) {
         console.log(regEmail);
         console.log(regPassword1);
         console.log(regPassword2);
-    }
-
-    const mapStateToProps = (state) => {
-        console.log('state', state);
-        return {
-            auth: store.auth
-        }
+        console.log('This is redux', props.auth)
     }
 
     function setAuthTrue()      { props.authTrue(); return }
-    function setAdminTrue()     { props.adminTrue(); return }
+    function setAuthFalse()     { props.authFalse(); return }
+
+    function consoleRedux() {
+        return console.log('I am here')
+    }
 
     return(
         <>
@@ -92,6 +91,9 @@ function Login(props) {
                     <input type="password" id="regPassword2" onChange={e => onChangeRegPass2(e.target.value)} ></input>
 
                     <input type="button" id="submitRegister" value="Register" onClick={ e => onClickReg()}></input>
+                </div>
+                <div className="testerButton">
+                    <input type="button" id="checkRedux" value="Check Redux" onclick={ e => consoleRedux()}></input>
                 </div>
                 <Link to="/">Back to Welcome</Link>
             </div>
