@@ -63,7 +63,7 @@ function Login(props) {
     function setAuthFalse()     { props.authFalse(); return }
 
     function consoleRedux() {
-        return console.log('I am here')
+        return console.log(props.auth)
     }
 
     return(
@@ -93,7 +93,7 @@ function Login(props) {
                     <input type="button" id="submitRegister" value="Register" onClick={ e => onClickReg()}></input>
                 </div>
                 <div className="testerButton">
-                    <input type="button" id="checkRedux" value="Check Redux" onclick={ e => consoleRedux()}></input>
+                    <input type="button" id="checkRedux" value="Check Redux" onClick={ e => consoleRedux()}></input>
                 </div>
                 <Link to="/">Back to Welcome</Link>
             </div>
