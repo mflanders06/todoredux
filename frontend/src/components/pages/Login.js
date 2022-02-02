@@ -41,12 +41,16 @@ function Login(props) {
         let pass1 = regPassword1;
         let pass2 = regPassword2;
 
+        console.log("pass1 is: ", pass1, "pass2 is: ", pass2)
+
         if(!(pass1 === pass2)){
             return alert('Passwords do not match')
         }
 
+        let password = pass1;
+
         axios
-            .post('/api/auth/register', {email, pass1})
+            .post('/api/auth/register', {email, password})
             .then( res => {
                 console.log(res)
             })

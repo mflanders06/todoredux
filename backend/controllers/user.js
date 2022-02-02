@@ -4,6 +4,7 @@ module.exports = {
 
     register: async (req, res) => {
         const { email, password } = req.body;
+        //console.log("my password is: ", password)
         const db = req.app.get('db');
         if(!email) {
             res.status(400).json('Please provide an email and password');
@@ -15,7 +16,9 @@ module.exports = {
                     if( innerUser.length > 0 ) {
                         return res.status(500).json('Email account already in use');
                     }
-                    
+
+                    //console.log("email is: ", email, "password is: ", password)
+
                     const salt = bcryptjs.genSaltSync(10)
                     const hash = bcryptjs.hashSync(password, salt)
 
@@ -24,14 +27,17 @@ module.exports = {
                         hash
                     )
                     .then(() => {
+                        
                         req.session.email = email;
                         res.status(200).json('registered');
                     })
                     .catch((err) => {
+                        
                         console.log(err);
                     })
                 })
                 .catch((err) => {
+                    //console.log(req.session)
                     console.log(err);
                 })
         }
