@@ -64,7 +64,7 @@ function Login(props) {
     }
 
     function setAuthTrue()      { props.authTrue(); return }
-    function setAuthFalse()     { props.authFalse(); return }
+    //function setAuthFalse()     { props.authFalse(); return }
 
     function consoleRedux() {
         return console.log(props.auth)
