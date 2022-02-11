@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express'),
-    userCtrl = require('./controllers/user');
+    userCtrl = require('./controllers/user'),
+    tasks = require('./controllers/tasks.js');
 const session = require('express-session');
 const massive = require('massive');
 
@@ -29,5 +30,6 @@ massive({
 
 app.post('/api/auth/login', userCtrl.login);
 app.post('/api/auth/register', userCtrl.register);
+app.get('/api/tasks/tasks', tasks.getTasks);
 
 app.listen(SERVER_PORT, () => console.log(`running on ${SERVER_PORT}`))
