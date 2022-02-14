@@ -1,14 +1,10 @@
 module.exports = {
-    getTasks: (req, res) => {
+    getTasks: async (req, res) => {
 
         const db = req.app.get('db');
 
-        const tasks = db
-            .tasks
-            .tasklist()
-            .then (() => {
-                res.status(200).send(tasks);
-            })
-
+        const tasklist = await db.tasks.tasklist();
+        
+        return res.status(200).send(tasklist);
     }
 }
