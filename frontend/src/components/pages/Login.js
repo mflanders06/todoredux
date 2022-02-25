@@ -31,8 +31,8 @@ function Login(props) {
             } )
             .catch( e => { console.log(e)})
 
-        console.log(loginEmail);
-        console.log(loginPassword);
+        //console.log(loginEmail);
+        //console.log(loginPassword);
     }
 
     function onClickReg(){
@@ -41,7 +41,7 @@ function Login(props) {
         let pass1 = regPassword1;
         let pass2 = regPassword2;
 
-        console.log("pass1 is: ", pass1, "pass2 is: ", pass2)
+        //console.log("pass1 is: ", pass1, "pass2 is: ", pass2)
 
         if(!(pass1 === pass2)){
             return alert('Passwords do not match')
@@ -57,10 +57,10 @@ function Login(props) {
             .catch( e => console.log(e) )
 
 
-        console.log(regEmail);
-        console.log(regPassword1);
-        console.log(regPassword2);
-        console.log('This is redux', props.auth)
+        //console.log(regEmail);
+        //console.log(regPassword1);
+        //console.log(regPassword2);
+        //console.log('This is redux', props.auth)
     }
 
     function setAuthTrue()      { props.authTrue(); return }

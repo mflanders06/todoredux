@@ -1,29 +1,80 @@
-import React from 'react';
 
+//Using a class component, as a refresher on how to do it the old way, including class state.
+import axios from 'axios';
+import React, { Component } from 'react';
 
-function TaskInput() {
-
-    function createTask(){
-        console.log("hi");
-        return;
+class TaskInput extends Component{
+    constructor(){
+        super();
+        this.state={
+            titleInput:"",
+            taskInput:"",
+            dueDateInput:""
+        }
     }
 
-    return(
-        <>
-            <div>This is the display for task inputs</div>
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value })
+    }
 
-            <div>Title: </div>
-            <input type="text"></input>
+    createTask = () => {
 
-            <div>Task: </div>
-            <input type="text"></input>
+        if(this.state.titleInput.length > 0 && this.state.taskInput.length > 0 && this.state.dueDateInput.length > 0){
+            return console.log("i made it")
+        }else{
+            return (console.log(this.state))    
+        }
+    }
 
-            <div>Due Date: </div>
-            <input type="date"></input>
+    /*
+    function onClickReg(){
 
-            <input type="button" value="Create" onClick={createTask} ></input>
-        </>
-    )
+        let email = regEmail;
+        let pass1 = regPassword1;
+        let pass2 = regPassword2;
+
+        console.log("pass1 is: ", pass1, "pass2 is: ", pass2)
+
+        if(!(pass1 === pass2)){
+            return alert('Passwords do not match')
+        }
+
+        let password = pass1;
+
+        axios
+            .post('/api/auth/register', {email, password})
+            .then( res => {
+                console.log(res)
+            })
+            .catch( e => console.log(e) )
+
+
+        //console.log(regEmail);
+        //console.log(regPassword1);
+        //console.log(regPassword2);
+        //console.log('This is redux', props.auth)
+    }
+    */
+
+    render(){
+        return(
+            <>
+                <div>This is the display for task inputs</div>
+
+                <div>Title: </div>
+                <input name="titleInput" type="text" value={this.state.titleInput} onChange={this.handleChange} ></input>
+
+                <div>Task: </div>
+                <input name="taskInput" type="text" value={this.state.taskInput} onChange={this.handleChange} ></input>
+
+                <div>Due Date: </div>
+                <input name="dueDateInput" type="date" value={this.state.dueDateInput} onChange={this.handleChange} ></input>
+
+                <input type="button" value="Create" onClick={this.createTask} ></input>
+            </>
+        )
+    }
+
 }
 
 export default TaskInput;
