@@ -19,10 +19,19 @@ class TaskInput extends Component{
 
     createTask = () => {
 
+        const {titleInput, taskInput, dueDateInput} = this.state;
+
         if(this.state.titleInput.length > 0 && this.state.taskInput.length > 0 && this.state.dueDateInput.length > 0){
-            return console.log("i made it")
+            axios.post('api/tasks/tasks', {titleInput, taskInput, dueDateInput})
+                .then( res => {
+                    console.log(res)
+                })
+                .catch((e) => {
+                    console.log(e);
+                })
+            this.setState({ titleInput: "", taskInput: "", dueDateInput: ""});
         }else{
-            return (console.log(this.state))    
+            return alert('Please fill in all task fields');
         }
     }
 

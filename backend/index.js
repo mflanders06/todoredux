@@ -31,5 +31,6 @@ massive({
 app.post('/api/auth/login', userCtrl.login);
 app.post('/api/auth/register', userCtrl.register);
 app.get('/api/tasks/tasks', tasks.getTasks);
+app.post('/api/tasks/tasks', tasks.createTask);
 
 app.listen(SERVER_PORT, () => console.log(`running on ${SERVER_PORT}`))
