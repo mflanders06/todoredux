@@ -35,40 +35,9 @@ class TaskInput extends Component{
         }
     }
 
-    /*
-    function onClickReg(){
-
-        let email = regEmail;
-        let pass1 = regPassword1;
-        let pass2 = regPassword2;
-
-        console.log("pass1 is: ", pass1, "pass2 is: ", pass2)
-
-        if(!(pass1 === pass2)){
-            return alert('Passwords do not match')
-        }
-
-        let password = pass1;
-
-        axios
-            .post('/api/auth/register', {email, password})
-            .then( res => {
-                console.log(res)
-            })
-            .catch( e => console.log(e) )
-
-
-        //console.log(regEmail);
-        //console.log(regPassword1);
-        //console.log(regPassword2);
-        //console.log('This is redux', props.auth)
-    }
-    */
-
     render(){
         return(
             <>
-                <div>This is the display for task inputs</div>
 
                 <div>Title: </div>
                 <input name="titleInput" type="text" value={this.state.titleInput} onChange={this.handleChange} ></input>

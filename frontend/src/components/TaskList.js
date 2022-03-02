@@ -16,6 +16,14 @@ function TaskList() {
             })
     }
 
+    let editClick = (task_key) => {
+        return console.log(task_key)
+    }
+
+    function deleteClick(task_key){
+        return console.log(task_key)
+    }
+
     //console.log(theTaskList);
 
     useEffect(() => {
@@ -30,7 +38,12 @@ function TaskList() {
             <>
                 {theTaskList.map((value, index) => (
                     <div key={value.task_key}>
-                        {value.task_name}{value.task_description}{value.created_date}{value.due_date}
+                        {value.task_name}
+                        {value.task_description}
+                        {value.created_date}
+                        {value.due_date}
+                        <input type="button" value="Edit" onClick={() => editClick(value.task_key)}></input>
+                        <input type="button" value="Delete" onClick={() => deleteClick(value.task_key)}></input>
                     </div>
                 ))}
                 <div>This is the display for the task list</div>
