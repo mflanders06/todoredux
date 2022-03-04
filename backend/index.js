@@ -32,5 +32,6 @@ app.post('/api/auth/login', userCtrl.login);
 app.post('/api/auth/register', userCtrl.register);
 app.get('/api/tasks/tasks', tasks.getTasks);
 app.post('/api/tasks/tasks', tasks.createTask);
+app.delete('/api/tasks/delete/:task_key', tasks.deleteTask)
 
 app.listen(SERVER_PORT, () => console.log(`running on ${SERVER_PORT}`))

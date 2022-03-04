@@ -19,5 +19,21 @@ module.exports = {
             .catch((e) => {
                 console.log(e);
             });
+    },
+
+    deleteTask: async (req, res) => {
+        
+        const db = req.app.get('db');
+        const {task_key} = req.params;
+
+        await db.tasks.delTask(task_key)
+            .then(() => {
+                console.log('hit')
+                res.writeHead(200);
+                res.end();
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 }

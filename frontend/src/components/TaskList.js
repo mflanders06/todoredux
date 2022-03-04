@@ -21,7 +21,10 @@ function TaskList() {
     }
 
     function deleteClick(task_key){
-        return console.log(task_key)
+        axios
+            .delete(`/api/tasks/delete/${task_key}`)
+            .then(getTaskList())
+            .catch((error) => {console.log(error)})
     }
 
     //console.log(theTaskList);
