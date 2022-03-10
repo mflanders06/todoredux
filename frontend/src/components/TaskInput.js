@@ -9,12 +9,20 @@ class TaskInput extends Component{
         this.state={
             titleInput:"",
             taskInput:"",
-            dueDateInput:""
+            dueDateInput:"",
+            taskList:""
         }
     }
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
+    }
+
+    getActiveTasks = () => {
+        axios.get('/api/tasks/activeTasks')
+        .then(tasks => {
+            this.setState({taskList: tasks.data})
+        })
     }
 
     createTask = () => {
@@ -30,6 +38,7 @@ class TaskInput extends Component{
                     console.log(e);
                 })
             this.setState({ titleInput: "", taskInput: "", dueDateInput: ""});
+            //this.handleChange();
         }else{
             return alert('Please fill in all task fields');
         }

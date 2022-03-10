@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function TaskList() {
+function ActiveTaskList() {
 
-    const [theTaskList, setTheTaskList] = useState();
+    const [theActiveTaskList, setTheActiveTaskList] = useState();
 
     let getTaskList = async() => {
         await axios
             .get('/api/tasks/tasks')
             .then(tasks => {
-                setTheTaskList(tasks.data);
+                setTheActiveTaskList(tasks.data);
             })
             .catch((error) => {
                 console.log(error);
@@ -33,13 +33,16 @@ function TaskList() {
         getTaskList();
     },[]);
 
-    if (!theTaskList){
+    let activeTask = `<input type="button" value="Complete" onClick={() => completeClick(value.task_key)}></input>`;
+    let completedTask = `<input type="button" value="Reopen" onClick={() => reopenClick(value.task_key)}></input>`;
+
+    if (!theActiveTaskList){
         return(<>Loading</>)
     }
     else{
         return(
             <>
-                {theTaskList.map((value, index) => (
+                {theActiveTaskList.map((value, index) => (
                     <div key={value.task_key}>
                         {value.task_name}
                         {value.task_description}
@@ -56,4 +59,4 @@ function TaskList() {
     }
 }
 
-export default TaskList;
+export default ActiveTaskList;
