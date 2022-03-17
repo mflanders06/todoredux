@@ -12,7 +12,7 @@ module.exports = {
 
         const db = req.app.get('db');
 
-        const tasklist = await db.tasks.activeTasklist();
+        const tasklist = await db.tasks.activeTaskList();
         
         return res.status(200).send(tasklist);
     },
@@ -21,7 +21,7 @@ module.exports = {
 
         const db = req.app.get('db');
 
-        const tasklist = await db.tasks.closedTasklist();
+        const tasklist = await db.tasks.closedTaskList();
         
         return res.status(200).send(tasklist);
     },
@@ -32,7 +32,7 @@ module.exports = {
 
         await db.tasks.addTask(titleInput, taskInput, dueDateInput)
             .then(() => {
-                res.sendstatus(200);
+                res.status(200).send('task created');
             })
             .catch((e) => {
                 console.log(e);
@@ -46,7 +46,7 @@ module.exports = {
 
         await db.tasks.delTask(task_key)
             .then(() => {
-                console.log('hit')
+                //console.log('hit')
                 res.writeHead(200);
                 res.end();
             })
@@ -67,6 +67,26 @@ module.exports = {
             })
             .catch((error) => {console.log(error)})
 
+    },
+
+    completeTask: async(req, res) => {
+        const db = req.app.get('db');
+        const {task_key} = req.params;
+        await db.tasks.completeTask()
+            .then(() => {
+                res.sendstatus(201);
+            })
+            .catch((error) => {console.log(error)});
+    },
+
+    reopenTask: async(req, res) => {
+        const db = req.app.get('db');
+        const {task_key} = req.params;
+        await db.tasks.reopenTask()
+            .then(() => {
+                res.sendstatus(201);
+            })
+            .catch((error) => {console.log(error)})
     }
 
 }

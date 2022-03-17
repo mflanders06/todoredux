@@ -7,7 +7,7 @@ function ActiveTaskList() {
 
     let getTaskList = async() => {
         await axios
-            .get('/api/tasks/tasks')
+            .get('/api/tasks/activeTasks')
             .then(tasks => {
                 setTheActiveTaskList(tasks.data);
             })

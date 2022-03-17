@@ -34,7 +34,9 @@ app.get('/api/tasks/tasks', tasks.getTasks);
 app.get('/api/tasks/activeTasks', tasks.getActiveTasks);
 app.get('/api/tasks/closedTasks', tasks.getClosedTasks);
 app.post('/api/tasks/tasks', tasks.createTask);
-app.delete('/api/tasks/delete/:task_key', tasks.deleteTask)
-app.patch('/api/tasks/update/:task_key', tasks.editTask)
+app.delete('/api/tasks/delete/:task_key', tasks.deleteTask);
+app.patch('/api/tasks/update/:task_key', tasks.editTask);
+app.patch('/api/tasks/complete/:task_key', tasks.completeTask);
+app.patch('/api/tasks/reopen/:task_key', tasks.reopenTask);
 
 app.listen(SERVER_PORT, () => console.log(`running on ${SERVER_PORT}`))
